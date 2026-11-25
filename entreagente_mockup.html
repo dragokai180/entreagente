@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#145640">
+<title>entreagente · Indicações da comunidade</title>
+<style>
+:root{font-family:Arial,sans-serif;color:#233c32;background:#f7faf7;--green:#145640;--line:#dfe8df;--muted:#65766b}*{box-sizing:border-box}body{margin:0}button,input,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #80b492;outline-offset:2px}.hidden{display:none!important}
+.topbar{background:#fff;border-bottom:1px solid var(--line);padding:16px max(24px,calc((100vw - 1080px)/2));display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font-size:23px;font-weight:800;letter-spacing:-1px;color:var(--green)}.brand span{font-weight:400}.top-actions{display:flex;align-items:center;gap:10px}.icon-button{position:relative;border:1px solid var(--line);background:white;border-radius:12px;width:42px;height:42px;font-size:20px;color:var(--green)}.badge{position:absolute;right:-5px;top:-6px;min-width:19px;height:19px;border-radius:50%;background:#d66d52;color:white;font-size:11px;display:grid;place-items:center;padding:0 3px}.user-name{font-size:13px;color:var(--muted)}.text-button{background:none;border:0;color:var(--green);font-size:13px;font-weight:700;padding:8px}
+main{max-width:1080px;margin:auto;padding:40px 24px 70px}.panel{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 10px 35px #1b43300a;padding:30px}.auth-wrap{min-height:calc(100vh - 75px);display:grid;place-items:center;padding:24px}.auth-wrap .panel{width:min(100%,450px)}.eyebrow{color:var(--green);font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;margin:0 0 14px}h1{font-size:clamp(28px,4vw,40px);line-height:1.15;margin:0 0 12px;letter-spacing:-1px}h2{font-size:21px;margin:0 0 10px}h3{font-size:17px;margin:0 0 7px}p{line-height:1.55}.muted{color:var(--muted);font-size:14px}.field{display:grid;gap:7px;margin:22px 0}.field label{font-size:13px;font-weight:700}.field input,.field textarea,.search{width:100%;border:1px solid #cfdccf;border-radius:10px;padding:13px 14px;background:#fff;color:#233c32}.field textarea{min-height:100px;resize:vertical}.button{border:1px solid transparent;border-radius:10px;min-height:46px;padding:11px 17px;font-weight:700;font-size:14px}.primary{background:var(--green);color:white}.primary:hover{background:#0e4230}.secondary{background:white;border-color:#cbd9cc;color:var(--green)}.secondary:hover{background:#f1f7f2}.full{width:100%}.stack{display:grid;gap:11px}.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:start}.hero-copy{padding:24px 5px}.home-card{max-width:480px}.menu-button{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid #cbd9cc;border-radius:10px;background:white;padding:14px;text-align:left;font-weight:700;margin:18px 0 10px}.menu-button span:last-child{color:var(--green)}.community-menu{border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:-2px 0 12px}.community-menu button{display:block;width:100%;padding:13px 14px;text-align:left;border:0;border-bottom:1px solid var(--line);background:#fff}.community-menu button:hover{background:#eaf3ee}.subsection{border-top:1px solid var(--line);margin-top:22px;padding-top:22px}.page-head{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:22px}.page-head-actions{display:flex;gap:9px;flex-wrap:wrap}.search{font-size:16px;margin:0 0 16px}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:18px 0}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{border:1px solid var(--line);background:#fff;border-radius:14px;padding:21px}.chip{display:inline-block;border-radius:6px;background:#eaf3ee;color:var(--green);font-size:11px;font-weight:700;padding:5px 8px}.empty{text-align:center;border:1px dashed #bfd4c2;border-radius:16px;background:#fff;padding:50px 20px;grid-column:1/-1}.empty p{max-width:430px;margin:10px auto 20px}.list{display:grid;gap:10px}.list-item{border:1px solid var(--line);border-radius:12px;padding:16px;background:white;display:flex;justify-content:space-between;align-items:center;gap:12px}.list-item p{margin:4px 0 0}.dialog{border:1px solid var(--line);border-radius:16px;width:min(100% - 28px,520px);max-height:90vh;overflow:auto;padding:28px;color:#233c32}.dialog::backdrop{background:#123d3080}.dialog-head{display:flex;justify-content:space-between;gap:12px}.dialog-head button{align-self:start;border:0;background:transparent;font-size:25px;color:var(--muted)}.dialog .field{margin:18px 0}.dialog-actions{display:flex;justify-content:flex-end;gap:9px;flex-wrap:wrap;margin-top:24px}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#103f31;color:white;padding:13px 18px;border-radius:9px;font-size:13px;box-shadow:0 8px 30px #0002;z-index:10}
+.field select{width:100%;border:1px solid #cfdccf;border-radius:10px;padding:13px 14px;background:#fff;color:#233c32}.field small{font-size:11px;color:var(--muted)}.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field-row .field{min-width:0}.check-row{display:flex;align-items:flex-start;gap:9px;font-size:12px;line-height:1.6;color:var(--muted);margin:17px 0}.check-row input{accent-color:var(--green);width:17px;height:17px;flex:none;margin:1px 0 0}.rating-picker{display:flex;gap:4px}.rating-picker button{border:0;background:transparent;color:#cdd8ce;font-size:30px;line-height:1;padding:3px 6px}.rating-picker button.on{color:#bf9348}.form-error{color:#a63e2a;background:#fff1ec;padding:10px;border-radius:8px;font-size:12px}.rating-line{color:#a07834;font-weight:700;font-size:13px}
+.professional-card{display:flex;flex-direction:column;gap:12px}.professional-card .card-head{display:flex;align-items:flex-start;gap:13px}.professional-card .card-head div{flex:1}.professional-card .card-head h3{margin:0 0 5px}.avatar{width:48px;height:48px;flex:none;border-radius:50%;background:#e6eee5;color:#4f7254;display:grid;place-items:center;font-weight:800}.save-button{border:1px solid var(--line);border-radius:50%;background:white;color:#809185;width:37px;height:37px;flex:none;font-size:19px}.save-button.saved{color:#d66d52;background:#fff2ee}.card-description{margin:0;color:var(--muted);font-size:13px}.card-meta{margin:0;color:#4f7254;font-size:12px;font-weight:700}.card-footer{border-top:1px solid var(--line);padding-top:12px;display:flex;justify-content:space-between;align-items:center;gap:10px}.card-footer small{color:var(--muted)}.profile-intro{display:flex;align-items:center;gap:14px;margin:12px 0 18px}.profile-intro h3{font-size:22px}.profile-intro .save-button{margin-left:auto}.profile-actions{display:flex;gap:9px;flex-wrap:wrap;margin:20px 0}.review{border-top:1px solid var(--line);padding:16px 0}.review p{margin:7px 0}.review small{color:var(--muted)}.profile-note{font-size:11px;color:var(--muted)}.filter-row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}.filter-row select{border:1px solid var(--line);border-radius:8px;padding:9px;background:white;color:#233c32}.filter-row .text-button.active{background:#eaf3ee;border-radius:8px}.contact-panel{background:#eaf3ee;border-radius:10px;padding:18px;margin:17px 0}.contact-panel strong{display:block;font-size:19px;margin-top:8px}
+@media(max-width:720px){.topbar{padding:14px 18px}.user-name{display:none}main{padding:25px 17px 55px}.panel{padding:23px}.hero{grid-template-columns:1fr;gap:4px}.hero-copy{padding:8px 0}.page-head{align-items:flex-start;flex-direction:column}.cards{grid-template-columns:1fr}.list-item{align-items:flex-start;flex-direction:column}.dialog{padding:21px}.field-row{grid-template-columns:1fr;gap:0}}
+/* Estilo da página de indicações do mockup original, isolado das telas de entrada. */
+.svg-defs{position:absolute;width:0;height:0;overflow:hidden}
+.brand{display:flex;align-items:center;gap:10px;font-size:21px;letter-spacing:0;white-space:nowrap}
+.brand>span:last-child{font-weight:800}
+.brand .brand-light{font-weight:500}
+.brand small{font-size:8px;display:block;font-weight:600;color:#87938b;letter-spacing:0;margin-top:5px}
+.brand-icon{width:35px;height:37px;background:#145640;color:white;display:grid;place-items:center;border-radius:8px}
+.brand-icon svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+#recommendations-view svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+#recommendations-view .search-icon{width:19px;height:19px}
+#app-screen.recommendations-layout{max-width:1600px;padding:38px 42px 45px}
+#recommendations-view .search-area{display:flex;gap:10px}
+#recommendations-view .search-field{display:flex;align-items:center;gap:12px;background:white;border:1px solid #dfe6df;min-height:49px;border-radius:6px;padding:0 15px;flex:1}
+#recommendations-view .search-icon{font-size:20px;color:#839183;line-height:1}
+#recommendations-view .search{border:0;border-radius:0;outline:0;min-width:0;width:100%;font-size:12px;padding:15px 0;margin:0}
+#recommendations-view .search-hint{font-size:10px;color:#9ba59e;white-space:nowrap}
+#recommendations-view .categories{display:flex;gap:8px;margin-top:15px;flex-wrap:wrap}
+#recommendations-view .category{display:flex;align-items:center;justify-content:center;gap:7px;border:1px solid #e5eae6;border-radius:5px;padding:9px 13px;background:white;color:#68776c;white-space:nowrap;font-size:11px;font-weight:500;min-height:36px}
+#recommendations-view .category svg{width:16px;height:16px}
+#recommendations-view .category.active{background:#145640;color:white;border-color:#145640}
+#recommendations-view .category:hover:not(.active){background:#edf3ed}
+#recommendations-view .page-head{margin:0 0 20px;align-items:center}
+#recommendations-view .page-head .eyebrow{font-size:10px;margin:0}
+#recommendations-view .page-head-actions{display:flex;gap:8px}
+#recommendations-view .professional-nav{display:flex;gap:6px;margin:0 0 22px;padding:5px;background:white;border:1px solid #e5eae6;border-radius:8px;width:max-content;max-width:100%}
+#recommendations-view .professional-nav button{display:flex;align-items:center;gap:8px;padding:11px 13px;border:0;border-radius:6px;background:transparent;color:#64776a;font-size:12px;font-weight:500;white-space:nowrap}
+#recommendations-view .professional-nav button:hover{background:#f2f6f2}
+#recommendations-view .professional-nav button.active{background:#eaf3ee;color:#145640;font-weight:700}
+#recommendations-view .professional-nav svg{width:19px;height:19px}
+#recommendations-view .nav-count{background:#edf1ec;min-width:18px;height:18px;display:grid;place-items:center;border-radius:4px;font-size:10px;padding:0 3px}
+#recommendations-view .button{min-height:40px;border-radius:6px;font-size:12px;padding:10px 14px}
+#recommendations-view .results-toolbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:32px 0 18px}
+#recommendations-view .results-toolbar>div{display:flex;align-items:center;gap:10px}
+#recommendations-view .results-toolbar h2{font-size:15px;font-weight:700;margin:0}
+#recommendations-view #results-count{font-size:10px;padding:4px 7px;background:#eef2ed;border-radius:4px}
+#recommendations-view .sort-label{display:flex;align-items:center;gap:8px;font-size:10px;color:#87938b}
+#recommendations-view .sort-label select{font-size:10px;color:#233c32;border:0;background:transparent;padding:5px;max-width:160px}
+#recommendations-view .professional-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+#recommendations-view .professional-card{background:white;border:1px solid #e5eae6;border-radius:8px;padding:21px 20px 0;display:flex;flex-direction:column;gap:0;min-width:0}
+#recommendations-view .professional-card:hover{box-shadow:0 12px 40px #173b2810;border-color:#c6d8c9}
+#recommendations-view .card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:15px}
+#recommendations-view .card-top .avatar{width:50px;height:50px;font-size:16px}
+#recommendations-view .card-actions{display:flex;align-items:center;gap:10px}
+#recommendations-view .profile-button{border:0;background:none;font-size:10px;color:#145640;display:flex;align-items:center;gap:7px;font-weight:700;padding:7px 0}
+#recommendations-view .profile-button svg{width:14px;height:14px}
+#recommendations-view .professional-card h3{font-size:16px;font-weight:750;line-height:1.4;margin:0}
+#recommendations-view .card-trade{font-size:11px;color:#637369;margin:4px 0 0}
+#recommendations-view .card-rating{display:flex;gap:5px;align-items:center;margin-top:15px;font-size:12px}
+#recommendations-view .card-rating .star{color:#c99745}
+#recommendations-view .card-rating small{color:#87938b;font-size:10px}
+#recommendations-view .card-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:15px;min-height:22px}
+#recommendations-view .tag{font-size:9px;color:#788479;background:#f6f8f5;border:1px solid #ebefe7;border-radius:4px;padding:4px 7px}
+#recommendations-view .recommend-line{display:flex;align-items:center;gap:6px;color:#4e775b;font-size:10px;margin-top:18px;font-weight:700}
+#recommendations-view .recommend-line svg{width:14px;height:14px}
+#recommendations-view .review-preview{font-size:11px;color:#7b857c;line-height:1.7;margin:11px 0 17px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:38px}
+#recommendations-view .card-footer{margin-top:auto;border-top:1px solid #edf0eb;display:flex;align-items:center;justify-content:space-between;gap:9px;min-height:54px;padding:0}
+#recommendations-view .card-footer small{font-size:9px;color:#8b958b}
+#recommendations-view .card-footer .text-button{font-size:10px}
+#recommendations-view .save-button{width:32px;height:32px;font-size:16px;color:#8b988e}
+#recommendations-view .save-button.saved{color:#d66d52}
+#recommendations-view .save-button svg{width:15px;height:15px}
+#recommendations-view .save-button.saved svg{fill:#d66d52}
+#recommendations-view .bottom-note{font-size:10px;color:#8a958c;display:flex;justify-content:center;line-height:1.7;margin:26px 0 28px;text-align:center}
+#recommendations-view .empty{border:1px dashed #d1dfd1;border-radius:8px;padding:55px 20px}
+.dialog.profile-dialog{width:min(640px,calc(100% - 32px));padding:0;border-radius:8px;box-shadow:0 25px 100px #0e2c3433}
+.profile-dialog .dialog-head{padding:19px 25px;border-bottom:1px solid #e5eae6;background:#fafcf9;align-items:center}
+.profile-dialog .dialog-head h2{font-size:11px;font-weight:500;color:#637369;margin:0}
+.profile-dialog #modal-body{padding:0 28px 25px}
+.profile-dialog .profile-intro{padding:26px 0 22px;margin:0}
+.profile-dialog .profile-intro .avatar{width:68px;height:68px;font-size:24px}
+.profile-dialog .profile-intro h3{font-size:25px}
+.profile-dialog .profile-context{background:#eaf3ee;color:#145640;border-radius:5px;padding:11px 13px;font-size:12px}
+.profile-dialog .section-title{font-size:15px;margin:23px 0 12px}
+.profile-dialog .profile-about{font-size:13px;color:#637369;line-height:1.8}
+.profile-dialog .card-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:15px}
+.profile-dialog .tag{font-size:9px;color:#788479;background:#f6f8f5;border:1px solid #ebefe7;border-radius:4px;padding:4px 7px}
+.profile-dialog .card-trade{font-size:13px;color:#637369;margin:5px 0 0}
+.profile-dialog .profile-actions .button{flex:1}
+.profile-dialog .reviews-heading{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-top:30px;border-bottom:1px solid #e5eae6;padding-bottom:14px}
+.profile-dialog .review{padding:18px 0;border-bottom:1px solid #e5eae6}
+.profile-dialog .review p{font-size:12px;line-height:1.8;color:#637369}
+.resident-actions{display:flex;gap:8px;flex-wrap:wrap}
+.resident-actions .button{min-height:36px;font-size:12px;padding:7px 10px}
+.danger{background:#a63e2a;color:white}.danger:hover{background:#842f20}
+.danger-button,.danger-link{color:#a63e2a!important}.danger-button{border-color:#e9c9c1}
+.profile-dialog .danger-link{margin-top:15px}
+@media(max-width:1050px){#recommendations-view .professional-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){#app-screen.recommendations-layout{padding:16px 21px 85px}#recommendations-view .search-hint{display:none}#recommendations-view .categories{flex-wrap:nowrap;overflow-x:auto;padding:1px 0 9px;scrollbar-width:none}#recommendations-view .category{flex:none;min-height:42px;font-size:12px}#recommendations-view .results-toolbar{margin:22px 0 15px;align-items:flex-start;flex-direction:column}#recommendations-view .sort-label{align-self:flex-end}#recommendations-view .professional-grid{grid-template-columns:1fr;gap:14px}#recommendations-view .professional-card{padding:18px 17px 0}#recommendations-view .review-preview{min-height:0}#recommendations-view .page-head{align-items:flex-start;gap:10px}#recommendations-view .page-head-actions{width:100%;flex-wrap:wrap}.profile-dialog #modal-body{padding:0 20px 20px}.profile-dialog .profile-intro .avatar{width:54px;height:54px;font-size:19px}}
+@media(max-width:760px){#recommendations-view .professional-nav{width:100%;overflow-x:auto}#recommendations-view .professional-nav button{flex:1;justify-content:center;font-size:10px;padding:10px 7px}#recommendations-view .professional-nav svg{width:17px;height:17px}#recommendations-view .nav-count{display:none}}
+/* Navegação original: barra lateral no desktop e barra inferior no celular. */
+#app-screen.recommendations-layout{margin-left:266px;max-width:none}
+body:has(#recommendations-view:not(.hidden)) .topbar{margin-left:266px;height:77px;padding:0 42px}
+body:has(#recommendations-view:not(.hidden)) .topbar .brand{display:none}
+body:has(#recommendations-view:not(.hidden)) .topbar .top-actions{margin-left:auto}
+#recommendations-view .professional-nav{position:fixed;inset:0 auto 0 0;z-index:30;width:266px;max-width:none;display:flex;flex-direction:column;align-items:stretch;gap:6px;margin:0;padding:31px 21px 18px;background:white;border:0;border-right:1px solid #e5eae6;border-radius:0}
+#recommendations-view .professional-nav button{width:100%;justify-content:flex-start;text-align:left;padding:13px 10px;font-size:12px}
+#recommendations-view .professional-nav .nav-count{margin-left:auto}
+#recommendations-view .sidebar-brand{display:flex;align-items:center;gap:10px;font-size:21px;font-weight:800;white-space:nowrap;margin-bottom:34px}
+#recommendations-view .sidebar-brand .brand-light{font-weight:500}
+#recommendations-view .sidebar-brand small{font-size:8px;display:block;font-weight:600;color:#87938b;margin-top:5px}
+#recommendations-view .sidebar-brand .brand-icon svg{width:24px;height:24px}
+#recommendations-view .sidebar-label{font-size:10px;font-weight:700;color:#87938b;letter-spacing:1px;margin:0 0 5px 4px}
+#recommendations-view .sidebar-community{border:1px solid #e5eae6;border-radius:7px;padding:12px 10px;background:#fcfdfb;font-size:11px;font-weight:600;line-height:1.5;min-height:42px}
+#recommendations-view .sidebar-nav-label{margin:27px 0 6px 9px}
+@media(max-width:760px){
+  #app-screen.recommendations-layout{margin-left:0;padding-bottom:100px}
+  body:has(#recommendations-view:not(.hidden)) .topbar{margin-left:0;height:auto;min-height:63px;padding:12px 21px}
+  body:has(#recommendations-view:not(.hidden)) .topbar .brand{display:flex}
+  #recommendations-view .professional-nav{position:fixed;inset:auto 0 0 0;width:100%;height:auto;flex-direction:row;align-items:stretch;gap:5px;padding:7px 10px max(7px,env(safe-area-inset-bottom));background:white;border:0;border-top:1px solid #e5eae6;box-shadow:0 -4px 20px #183b2506;overflow:visible}
+  #recommendations-view .professional-nav .sidebar-brand,#recommendations-view .professional-nav .sidebar-label,#recommendations-view .professional-nav .sidebar-community{display:none}
+  #recommendations-view .professional-nav button{flex:1;min-width:0;width:auto;min-height:49px;flex-direction:column;gap:4px;justify-content:center;text-align:center;padding:6px 3px;font-size:9px;white-space:normal}
+  #recommendations-view .professional-nav .nav-count{display:none}
+  #recommendations-view .professional-nav svg{width:19px;height:19px}
+}
+@media(max-width:760px){
+  .topbar,body:has(#recommendations-view:not(.hidden)) .topbar{display:grid;grid-template-columns:minmax(0,1fr) auto;row-gap:8px;padding:12px 18px}
+  .topbar .brand{grid-column:1/-1}
+  .topbar .top-actions,body:has(#recommendations-view:not(.hidden)) .topbar .top-actions{grid-column:1/-1;display:flex;width:100%;margin-left:0;gap:8px}
+  .topbar .top-actions.hidden{display:none}
+  .topbar .user-name{display:block;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px}
+  .topbar .icon-button{width:38px;height:38px}
+}
+</style>
+</head>
+<body>
+<svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10H3zM9 20v-7h6v7"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0l-1 1-1-1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3m1-17a3 3 0 0 1 0 6m2 4a6 6 0 0 1 3 5v2"/></symbol>
+<symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+<symbol id="i-zap" viewBox="0 0 24 24"><path d="m13 2-9 12h7l-1 8 10-12h-7z"/></symbol>
+<symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3c-3 4-7 8-7 12a7 7 0 0 0 14 0c0-4-4-8-7-12Z"/></symbol>
+<symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5ZM20 2v4m-2-2h4"/></symbol>
+<symbol id="i-paint" viewBox="0 0 24 24"><rect x="3" y="3" width="14" height="6" rx="2"/><path d="M17 6h4v7h-9v4m-2 0h4v5h-4z"/></symbol>
+<symbol id="i-tool" viewBox="0 0 24 24"><path d="M21 7a6 6 0 0 1-8 6L5 21l-3-3 8-8a6 6 0 0 1 7-8l-4 4 4 4 4-3Z"/></symbol>
+<symbol id="i-air" viewBox="0 0 24 24"><path d="M3 8h11a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h5a3 3 0 1 1-3 3"/></symbol>
+</defs></svg>
+<header class="topbar"><div class="brand"><span class="brand-icon"><svg><use href="#i-home"/></svg></span><span>entre<span class="brand-light">agente</span><small>CONFIANÇA QUE MORA PERTO</small></span></div><div id="account-actions" class="top-actions hidden"><span id="user-name" class="user-name"></span><button id="notifications-button" class="icon-button" aria-label="Ver convites" title="Convites">✉<span id="invite-badge" class="badge hidden"></span></button><button id="logout-button" class="text-button">Sair</button></div></header>
+<div id="auth-screen" class="auth-wrap"><section class="panel"><p class="eyebrow">Boas indicações moram perto</p><h1>Entre na sua rede de vizinhos.</h1><p class="muted">Cadastre seu nome e telefone para compartilhar e encontrar profissionais indicados por moradores.</p><form id="login-form"><div class="field"><label for="login-name">Seu nome</label><input id="login-name" autocomplete="name" required placeholder="Nome e sobrenome"></div><div class="field"><label for="login-phone">Número de telefone</label><input id="login-phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="(11) 99999-9999"></div><button class="button primary full" type="submit">Entrar</button></form><p class="muted">Neste mockup, o cadastro não exige confirmação.</p></section></div>
+<main id="app-screen" class="hidden">
+<section id="home-view" class="hero"><div class="hero-copy"><p class="eyebrow">Sua rede de confiança</p><h1>Um bom profissional, indicado por quem mora perto.</h1><p class="muted">Entre na sua comunidade para encontrar experiências compartilhadas pelos vizinhos.</p></div><div class="panel home-card"><h2>Suas comunidades</h2><p class="muted">Escolha onde deseja buscar.</p><button id="community-menu-button" class="menu-button" type="button" aria-expanded="false"><span id="selected-community">Nenhuma comunidade ainda</span><span>⌄</span></button><div id="community-menu" class="community-menu hidden"></div><button id="search-button" class="button primary full">Buscar indicações</button><div class="subsection stack"><button id="create-button" class="button secondary full">Criar nova comunidade</button></div></div></section>
+<section id="recommendations-view" class="hidden"><div class="page-head"><div><button id="back-home" class="text-button">← Início</button><p class="eyebrow" id="community-eyebrow"></p></div><div class="page-head-actions"><button id="residents-button" class="button secondary">Residentes</button><button id="invite-button" class="button secondary hidden">Convidar</button><button id="recommend-button" class="button primary">Indicar profissional</button></div></div><nav id="professional-nav" class="professional-nav" aria-label="Profissionais"><div class="sidebar-brand"><span class="brand-icon"><svg aria-hidden="true"><use href="#i-home"/></svg></span><span>entre<span class="brand-light">agente</span><small>CONFIANÇA QUE MORA PERTO</small></span></div><p class="sidebar-label">SUA COMUNIDADE</p><div id="sidebar-community-name" class="sidebar-community"></div><p class="sidebar-label sidebar-nav-label">COMUNIDADE</p><button type="button" data-pro-view="explorar"><svg aria-hidden="true"><use href="#i-grid"/></svg>Encontrar profissionais</button><button type="button" data-pro-view="indicacoes"><svg aria-hidden="true"><use href="#i-users"/></svg>Minhas indicações <span id="mine-count" class="nav-count">0</span></button><button type="button" data-pro-view="salvos"><svg aria-hidden="true"><use href="#i-heart"/></svg>Profissionais salvos <span id="saved-count" class="nav-count">0</span></button></nav><div class="search-area"><div class="search-field"><svg class="search-icon" aria-hidden="true"><use href="#i-search"/></svg><input id="search-input" class="search" type="search" placeholder="Qual serviço você está procurando?" aria-label="Buscar por nome, categoria ou serviço"><span class="search-hint">Nome ou serviço</span></div></div><div id="category-buttons" class="categories" role="group" aria-label="Categorias de serviço"></div><select id="category-filter" class="hidden" aria-label="Filtrar por categoria"><option value="">Todas as categorias</option><option>Elétrica</option><option>Hidráulica</option><option>Limpeza</option><option>Pintura</option><option>Reparos</option><option>Climatização</option></select><div class="results-toolbar"><div><h2 id="results-heading">Profissionais da comunidade</h2><span id="results-count" class="muted"></span></div><label class="sort-label">Ordenar por <select id="sort-pros" aria-label="Ordenar profissionais"><option value="recommended">Mais recomendações</option><option value="rating">Melhor avaliação</option><option value="name">Nome de A a Z</option></select></label></div><div id="recommendations-list" class="professional-grid"></div><p class="bottom-note">ⓘ As indicações refletem experiências dos moradores. Não representam credenciamento ou garantia do condomínio.</p></section>
+</main>
+<dialog id="modal" class="dialog"><div class="dialog-head"><h2 id="modal-title"></h2><button id="close-modal" type="button" aria-label="Fechar">×</button></div><div id="modal-body"></div></dialog><div id="toast" class="toast hidden" role="status"></div>
+<script>
+const $=selector=>document.querySelector(selector);
+const icon=name=>'<svg aria-hidden="true"><use href="#i-'+name+'"/></svg>';
+const safe=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const digits=value=>String(value??'').replace(/\D/g,'');
+const uid=()=>window.crypto&&crypto.randomUUID?crypto.randomUUID():String(Date.now())+Math.random().toString(36).slice(2);
+const key='entreagente-mockup-v2',blank=()=>({users:[],communities:[],invitations:[],recommendations:[],currentPhone:null,selectedByPhone:{}});
+let data;try{const saved=JSON.parse(localStorage.getItem(key));data=saved&&Array.isArray(saved.users)&&Array.isArray(saved.communities)&&Array.isArray(saved.invitations)&&Array.isArray(saved.recommendations)?saved:blank()}catch{data=blank()}
+let screen='home',menuOpen=false,searchText='',formRating=0,showSaved=false,showMine=false,profileId=null;
+const categories=['Elétrica','Hidráulica','Limpeza','Pintura','Reparos','Climatização'];
+const user=()=>data.users.find(x=>x.phone===data.currentPhone);
+const joined=()=>data.communities.filter(x=>x.members.includes(data.currentPhone));
+const selected=()=>joined().find(x=>x.id===data.selectedByPhone[data.currentPhone])||joined()[0];
+const moderators=c=>Array.isArray(c?.moderators)?c.moderators:[];
+const isCreator=c=>!!c&&c.creatorPhone===data.currentPhone;
+const isModerator=c=>!!c&&moderators(c).includes(data.currentPhone);
+const canDeleteProfessional=c=>isCreator(c)||isModerator(c);
+const canExpel=(c,phone)=>!!c&&c.members.includes(phone)&&phone!==c.creatorPhone&&phone!==data.currentPhone&&(isCreator(c)||(isModerator(c)&&!moderators(c).includes(phone)));
+const normalize=value=>String(value??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('pt-BR').trim();
+const savedKey=group=>group.communityId+':'+normalize(group.name);
+const isSaved=group=>(data.savedByPhone?.[data.currentPhone]||[]).includes(savedKey(group));
+const isMine=group=>group.rows.some(row=>row.indication!==false&&(row.authorPhone?row.authorPhone===data.currentPhone:normalize(row.author)===normalize(user()?.name)));
+function groups(communityId){const map=new Map();for(const row of data.recommendations.filter(x=>x.communityId===communityId)){const k=normalize(row.name);if(!map.has(k))map.set(k,{id:row.id,name:row.name,communityId,category:row.category||row.service,contact:row.contact||'',rows:[]});const group=map.get(k);group.rows.push(row);if(!group.contact&&row.contact)group.contact=row.contact}return [...map.values()]}
+function groupById(id){const c=selected();return c&&groups(c.id).find(x=>x.rows.some(row=>row.id===id))}
+const recommenders=group=>new Set(group.rows.filter(x=>x.recommend!==false).map(x=>x.authorPhone||x.author)).size;
+const average=group=>{const rows=group.rows.filter(x=>Number(x.rating)>0);return rows.length?rows.reduce((sum,x)=>sum+Number(x.rating),0)/rows.length:0};
+const initials=name=>String(name).split(/\s+/).filter(Boolean).map(x=>x[0]).slice(0,2).join('').toUpperCase();
+const shared=()=>({users:data.users,communities:data.communities,invitations:data.invitations,recommendations:data.recommendations,savedByPhone:data.savedByPhone||{}});
+const sharedCopy=value=>JSON.parse(JSON.stringify(value));
+let serverEnabled=false,serverBase=null,syncing=false;
+function saveLocal(){try{localStorage.setItem(key,JSON.stringify(data))}catch{toast('O navegador não permitiu salvar os dados locais.')}}
+function applyShared(remote){
+  const active=data.users.find(item=>item.phone===data.currentPhone);
+  data={...data,...sharedCopy(remote)};
+  if(active&&!data.users.some(item=>item.phone===active.phone))data.users.push(active);
+  saveLocal();refresh();
+  if(active&&JSON.stringify(shared())!==JSON.stringify(serverBase))queueMicrotask(()=>void flushSync());
+}
+async function flushSync(){
+  if(!serverEnabled||syncing)return;
+  syncing=true;
+  try{
+    while(JSON.stringify(shared())!==JSON.stringify(serverBase)){
+      const next=sharedCopy(shared()),base=sharedCopy(serverBase);
+      const response=await fetch('/api/sync',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({base,next})});
+      if(!response.ok)throw new Error('Falha ao salvar no servidor');
+      const remote=await response.json();
+      if(JSON.stringify(shared())===JSON.stringify(next)){serverBase=remote;applyShared(remote);break}
+      serverBase=next;
+    }
+  }catch(error){toast('Sem conexão com o servidor. Tentaremos novamente.')}
+  finally{syncing=false}
+}
+function save(){saveLocal();void flushSync()}
+async function pollServer(){
+  if(!serverEnabled||syncing)return;
+  if(JSON.stringify(shared())!==JSON.stringify(serverBase)){void flushSync();return}
+  try{const before=JSON.stringify(shared()),response=await fetch('/api/state',{cache:'no-store'});if(!response.ok)throw new Error('Servidor indisponível');const remote=await response.json();if(before!==JSON.stringify(shared())){void flushSync();return}serverBase=remote;applyShared(remote)}
+  catch{ /* Mantém os dados visíveis até a conexão voltar. */ }
+}
+async function initServer(){
+  try{
+    const response=await fetch('/api/state',{cache:'no-store'});
+    if(!response.ok)throw new Error('Servidor indisponível');
+    const remote=await response.json(),local=sharedCopy(shared());
+    serverEnabled=true;serverBase=remote;
+    const importKey='entreagente-server-imported-v1';
+    if(!localStorage.getItem(importKey)&&local.communities.length){
+      const imported=await fetch('/api/sync',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({base:{users:[],communities:[],invitations:[],recommendations:[],savedByPhone:{}},next:local})});
+      if(!imported.ok)throw new Error('Falha ao importar dados locais');
+      serverBase=await imported.json();
+    }
+    localStorage.setItem(importKey,'1');
+    applyShared(serverBase);
+    setInterval(pollServer,3000);
+  }catch{refresh();toast('Modo local: abra pelo servidor para compartilhar dados entre dispositivos.')}
+}
+function toast(text){const el=$('#toast');el.textContent=text;el.classList.remove('hidden');clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.add('hidden'),3200)}
+function modal(title,body){$('#modal-title').textContent=title;$('#modal-body').innerHTML=body;$('#modal').classList.toggle('profile-dialog',title==='Perfil do profissional');if(!$('#modal').open)$('#modal').showModal()}
+function closeModal(){$('#modal').close()}
+function refresh(){const u=user();$('#auth-screen').classList.toggle('hidden',!!u);$('#app-screen').classList.toggle('hidden',!u);$('#account-actions').classList.toggle('hidden',!u);if(!u)return;$('#user-name').textContent=u.name;const pending=data.invitations.filter(x=>x.phone===u.phone&&x.status==='pending').length;$('#invite-badge').textContent=pending;$('#invite-badge').classList.toggle('hidden',!pending);const community=selected();$('#selected-community').textContent=community?community.name:'Nenhuma comunidade ainda';$('#community-menu-button').setAttribute('aria-expanded',String(menuOpen));$('#community-menu').classList.toggle('hidden',!menuOpen||!joined().length);$('#community-menu').innerHTML=joined().map(x=>'<button type="button" data-select="'+safe(x.id)+'">'+safe(x.name)+'</button>').join('');$('#home-view').classList.toggle('hidden',screen!=='home');$('#recommendations-view').classList.toggle('hidden',screen!=='recommendations'||!community);$('#app-screen').classList.toggle('recommendations-layout',screen==='recommendations'&&!!community);if(screen==='recommendations'&&community)renderRecommendations(community)}
+function renderRecommendations(community){
+  $('#community-eyebrow').textContent=community.name;
+  $('#sidebar-community-name').textContent=community.name;
+  $('#invite-button').classList.toggle('hidden',community.creatorPhone!==data.currentPhone);
+  const professionalView=showSaved?'salvos':showMine?'indicacoes':'explorar';
+  $('#professional-nav').querySelectorAll('[data-pro-view]').forEach(button=>{const active=button.dataset.proView===professionalView;button.classList.toggle('active',active);button.setAttribute('aria-current',active?'page':'false')});
+  const allGroups=groups(community.id);
+  $('#mine-count').textContent=allGroups.filter(isMine).length;
+  $('#saved-count').textContent=allGroups.filter(isSaved).length;
+  $('#results-heading').textContent=showSaved?'Profissionais salvos':showMine?'Minhas indicações':'Profissionais da comunidade';
+  const categoryIcons={'Todos':'grid','Elétrica':'zap','Hidráulica':'drop','Limpeza':'spark','Pintura':'paint','Reparos':'tool','Climatização':'air'};
+  $('#category-buttons').innerHTML=[['Todos',''],...categories.map(x=>[x,x])].map(([label,value])=>'<button class="category '+($('#category-filter').value===value?'active':'')+'" type="button" data-category="'+safe(value)+'" aria-pressed="'+($('#category-filter').value===value)+'">'+icon(categoryIcons[label])+safe(label)+'</button>').join('');
+  const term=normalize(searchText),category=$('#category-filter').value,sort=$('#sort-pros').value;
+  let list=allGroups.filter(group=>(!showSaved||isSaved(group))&&(!showMine||isMine(group))&&(!category||group.category===category)&&(!term||normalize([group.name,group.category,...group.rows.flatMap(x=>[x.service,x.description])].join(' ')).includes(term)));
+  list.sort((a,b)=>sort==='name'?a.name.localeCompare(b.name,'pt-BR'):sort==='rating'?average(b)-average(a)||recommenders(b)-recommenders(a):recommenders(b)-recommenders(a)||average(b)-average(a));
+  $('#results-count').textContent=list.length+(list.length===1?' profissional':' profissionais');
+  $('#recommendations-list').innerHTML=list.length?list.map(group=>{
+    const first=group.rows[0],count=recommenders(group),score=average(group);
+    return '<article class="professional-card"><div class="card-top"><span class="avatar" aria-hidden="true">'+safe(initials(group.name))+'</span><div class="card-actions"><button class="profile-button" data-profile="'+safe(group.id)+'">Ver perfil</button><button class="save-button '+(isSaved(group)?'saved':'')+'" data-save="'+safe(group.id)+'" aria-label="'+(isSaved(group)?'Remover dos salvos: ':'Salvar profissional: ')+safe(group.name)+'" aria-pressed="'+isSaved(group)+'">'+icon('heart')+'</button></div></div><h3>'+safe(group.name)+'</h3><p class="card-trade">'+safe(group.category)+'</p><div class="card-rating"><span class="star">★</span><strong>'+(score?score.toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1}):'—')+'</strong><small>('+group.rows.length+(group.rows.length===1?' avaliação':' avaliações')+')</small></div><div class="card-tags">'+[...new Set(group.rows.map(x=>x.service))].slice(0,3).map(x=>'<span class="tag">'+safe(x)+'</span>').join('')+'</div><div class="recommend-line">'+icon('users')+'<strong>'+count+(count===1?' morador recomenda':' moradores recomendam')+'</strong></div><p class="review-preview">“'+safe(first.description)+'”</p></article>';
+  }).join(''):'<div class="empty"><h3>'+(showSaved?'Nenhum profissional salvo':showMine?'Você ainda não indicou profissionais':term||category?'Nenhum profissional encontrado':'Ainda não há indicações')+'</h3><p class="muted">'+(showSaved?'Use o coração em um perfil para encontrá-lo depois.':showMine?'Compartilhe um profissional que fez um bom trabalho para você.':term||category?'Tente buscar outro nome, serviço ou categoria.':'Se um profissional fez um bom trabalho para você, compartilhe a experiência com seus vizinhos.')+'</p>'+(!showSaved&&!term&&!category?'<button class="button primary" id="empty-recommend-button">Indicar profissional</button>':'')+'</div>';
+}
+function profileBody(group){
+  const score=average(group),count=recommenders(group);
+  return '<div class="profile-intro"><span class="avatar" aria-hidden="true">'+safe(initials(group.name))+'</span><div><h3>'+safe(group.name)+'</h3><p class="card-trade">'+safe(group.category)+'</p></div><button class="save-button '+(isSaved(group)?'saved':'')+'" data-save="'+safe(group.id)+'" aria-label="'+(isSaved(group)?'Remover dos salvos: ':'Salvar profissional: ')+safe(group.name)+'" aria-pressed="'+isSaved(group)+'">♥</button></div><div class="profile-context">'+count+(count===1?' morador recomenda':' moradores recomendam')+' nesta comunidade</div><h3 class="section-title">Sobre os serviços</h3><p class="profile-about">Profissional indicado por moradores para serviços de '+safe(group.category.toLocaleLowerCase('pt-BR'))+'.</p><div class="card-tags">'+[...new Set(group.rows.map(x=>x.service))].slice(0,3).map(x=>'<span class="tag">'+safe(x)+'</span>').join('')+'</div><div class="profile-actions"><button class="button primary" data-contact="'+safe(group.id)+'">Ver contato</button><button class="button secondary" data-review="'+safe(group.id)+'">Registrar experiência</button></div><div class="reviews-heading"><h3>Experiências da comunidade</h3><span class="rating-line">★ '+(score?score.toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1}):'—')+' · '+group.rows.length+(group.rows.length===1?' avaliação':' avaliações')+'</span></div>'+group.rows.map(row=>'<article class="review"><strong>'+safe(row.author)+'</strong><small> · '+safe(row.service)+'</small><p class="rating-line">'+(row.rating?'★ '+safe(row.rating)+'/5':'Sem nota')+'</p><p>'+safe(row.description)+'</p>'+(row.recommend!==false?'<small>✓ Recomenda este profissional</small>':'')+'</article>').join('')+'<p class="profile-note">Indicações de moradores não significam credenciamento ou verificação profissional.</p><button class="text-button" data-report="'+safe(group.id)+'">Reportar informação ou avaliação</button>'+(canDeleteProfessional(selected())?'<button class="text-button danger-link" data-delete-professional="'+safe(group.id)+'">Excluir profissional</button>':'');
+}
+function openProfile(id){const group=groupById(id);if(!group)return;profileId=group.id;modal('Perfil do profissional',profileBody(group))}
+function showContact(id){const group=groupById(id);if(!group)return;modal('Contato do profissional','<p class="muted">'+safe(group.name)+'</p><div class="contact-panel"><span class="eyebrow">CONTATO DE DEMONSTRAÇÃO</span><strong>'+safe(group.contact||'Contato fictício — sem ligação ativa')+'</strong><p class="muted">Este mockup não envia mensagens nem realiza chamadas.</p></div><button class="button primary" data-profile="'+safe(group.id)+'">Voltar ao perfil</button>')}
+function showReviewForm(id){const group=groupById(id);if(!group)return;formRating=0;modal('Compartilhe sua experiência','<p class="muted">Avaliação de '+safe(group.name)+' em '+safe(selected().name)+'.</p><form id="review-form" data-id="'+safe(group.id)+'"><div class="field"><label for="review-service">Qual serviço foi realizado? *</label><input id="review-service" required maxlength="80" placeholder="Ex.: instalação de ventilador"></div><fieldset class="field" style="border:0;padding:0"><legend>Sua avaliação *</legend><div class="rating-picker" role="group" aria-label="Escolher nota de 1 a 5">'+[1,2,3,4,5].map(x=>'<button type="button" data-rating="'+x+'" aria-label="'+x+(x===1?' estrela':' estrelas')+'" aria-pressed="false">★</button>').join('')+'</div><small id="rating-value">Selecione uma nota</small></fieldset><div class="field"><label for="review-description">Como foi sua experiência? *</label><textarea id="review-description" required minlength="10" maxlength="600" placeholder="Conte como foi o atendimento e o resultado do serviço."></textarea><small>De 10 a 600 caracteres. Evite dados pessoais no relato.</small></div><label class="check-row"><input id="review-recommend" type="checkbox" checked>Recomendo este profissional para meus vizinhos.</label><p id="form-error" class="form-error hidden" role="alert"></p><div class="dialog-actions"><button class="button secondary" type="button" data-profile="'+safe(group.id)+'">Cancelar</button><button class="button primary" type="submit">Publicar avaliação</button></div></form>')}
+function showReportForm(id){const group=groupById(id);if(!group)return;modal('Reportar uma informação','<p class="muted">Simulação do fluxo de moderação. As regras de análise ainda serão definidas.</p><form id="report-form"><div class="field"><label for="report-reason">Motivo *</label><select id="report-reason" required><option value="">Selecione</option><option>Contato incorreto</option><option>Profissional duplicado</option><option>Conteúdo inadequado</option><option>Contestação de avaliação</option><option>Outro</option></select></div><div class="field"><label for="report-description">Detalhes *</label><textarea id="report-description" required minlength="10" maxlength="600"></textarea></div><div class="dialog-actions"><button class="button secondary" type="button" data-profile="'+safe(group.id)+'">Cancelar</button><button class="button primary" type="submit">Registrar na demonstração</button></div></form>')}
+$('#login-form').addEventListener('submit',e=>{e.preventDefault();const name=$('#login-name').value.trim(),phone=digits($('#login-phone').value);if(!name||!phone)return;let u=data.users.find(x=>x.phone===phone);if(!u){u={name,phone};data.users.push(u)}else u.name=name;data.currentPhone=phone;screen='home';save();refresh()});
+$('#logout-button').addEventListener('click',()=>{data.currentPhone=null;screen='home';menuOpen=false;save();refresh()});
+$('#community-menu-button').addEventListener('click',()=>{menuOpen=!menuOpen;refresh()});
+$('#community-menu').addEventListener('click',e=>{const item=e.target.closest('[data-select]');if(!item)return;data.selectedByPhone[data.currentPhone]=item.dataset.select;menuOpen=false;save();refresh()});
+$('#search-button').addEventListener('click',()=>{if(!selected()){toast('Crie uma comunidade ou aceite um convite para buscar indicações.');return}screen='recommendations';searchText='';showSaved=false;showMine=false;$('#search-input').value='';$('#category-filter').value='';$('#sort-pros').value='recommended';refresh()});
+$('#back-home').addEventListener('click',()=>{screen='home';refresh()});
+$('#create-button').addEventListener('click',()=>modal('Criar nova comunidade','<form id="create-form"><div class="field"><label for="new-community-name">Nome da comunidade</label><input id="new-community-name" required maxlength="80" placeholder="Ex.: Condomínio das Palmeiras"></div><div class="dialog-actions"><button class="button secondary" type="button" data-close>Cancelar</button><button class="button primary" type="submit">Criar comunidade</button></div></form>'));
+function showInvitations(){const invites=data.invitations.filter(x=>x.phone===data.currentPhone&&x.status==='pending');modal('Seus convites',invites.length?'<div class="list">'+invites.map(x=>{const c=data.communities.find(y=>y.id===x.communityId);return '<div class="list-item"><div><strong>'+safe(c?c.name:'Comunidade indisponível')+'</strong><p class="muted">Convite de '+safe(x.sender)+'</p></div><div><button class="button primary" data-accept="'+safe(x.id)+'">Aceitar</button> <button class="button secondary" data-decline="'+safe(x.id)+'">Recusar</button></div></div>'}).join('')+'</div>':'<p class="muted">Você ainda não recebeu convites.</p>')}
+$('#notifications-button').addEventListener('click',showInvitations);
+function showResidents(){const c=selected();if(!c)return;modal('Residentes · '+c.name,'<div class="list">'+c.members.map(phone=>{const u=data.users.find(x=>x.phone===phone),moderator=moderators(c).includes(phone);return '<div class="list-item"><div><strong>'+safe(u?u.name:phone)+'</strong><p class="muted">'+(phone===c.creatorPhone?'Criador da comunidade':moderator?'Moderador':'Residente')+'</p></div><div class="resident-actions">'+(isCreator(c)&&phone!==c.creatorPhone?'<button class="button secondary" data-toggle-moderator="'+safe(phone)+'">'+(moderator?'Remover moderação':'Adicionar moderador')+'</button>':'')+(canExpel(c,phone)?'<button class="button secondary danger-button" data-expel="'+safe(phone)+'">Expulsar</button>':'')+'</div></div>'}).join('')+'</div>')}
+$('#residents-button').addEventListener('click',showResidents);
+function confirmExpel(phone){const c=selected(),u=data.users.find(x=>x.phone===phone);if(!canExpel(c,phone))return;modal('Expulsar residente','<p class="muted">Remover '+safe(u?u.name:phone)+' de '+safe(c.name)+'? A pessoa perderá acesso à comunidade.</p><div class="dialog-actions"><button class="button secondary" data-show-residents>Cancelar</button><button class="button danger" data-confirm-expel="'+safe(phone)+'">Expulsar residente</button></div>')}
+function confirmDeleteProfessional(id){const c=selected(),group=groupById(id);if(!canDeleteProfessional(c)||!group)return;modal('Excluir profissional','<p class="muted">Excluir '+safe(group.name)+' e todas as experiências dele nesta comunidade? Esta ação não pode ser desfeita no mockup.</p><div class="dialog-actions"><button class="button secondary" data-profile="'+safe(group.id)+'">Cancelar</button><button class="button danger" data-confirm-delete-professional="'+safe(group.id)+'">Excluir profissional</button></div>')}
+$('#invite-button').addEventListener('click',()=>{const c=selected();if(!c||c.creatorPhone!==data.currentPhone)return;modal('Convidar residente','<p class="muted">'+(serverEnabled?'O convite aparecerá nas notificações quando a pessoa entrar com este número, inclusive em outro dispositivo.':'No modo local, os convites ficam apenas neste navegador. Abra o aplicativo pelo servidor para compartilhá-los.')+'</p><form id="invite-form"><div class="field"><label for="invite-phone">Número de telefone do residente</label><input id="invite-phone" type="tel" inputmode="tel" required placeholder="(11) 99999-9999"></div><div class="dialog-actions"><button class="button secondary" type="button" data-close>Cancelar</button><button class="button primary" type="submit">Enviar convite</button></div></form>')});
+function showRecommendationForm(){formRating=0;modal('Indique um bom profissional','<p class="muted">Compartilhe uma experiência com os moradores da sua comunidade.</p><form id="recommendation-form"><div class="field"><label for="pro-name">Nome do profissional *</label><input id="pro-name" required minlength="3" maxlength="70" placeholder="Nome e sobrenome"></div><div class="field-row"><div class="field"><label for="pro-category">Categoria *</label><select id="pro-category" required><option value="">Selecione</option>'+categories.map(x=>'<option>'+safe(x)+'</option>').join('')+'</select></div><div class="field"><label for="pro-contact">Contato</label><input id="pro-contact" maxlength="60" placeholder="Contato de demonstração"><small>Use somente informações fictícias.</small></div></div><div class="field"><label for="pro-service">Qual serviço foi realizado? *</label><input id="pro-service" required maxlength="80" placeholder="Ex.: instalação de ventilador"></div><fieldset class="field" style="border:0;padding:0"><legend>Sua avaliação *</legend><div class="rating-picker" role="group" aria-label="Escolher nota de 1 a 5">'+[1,2,3,4,5].map(x=>'<button type="button" data-rating="'+x+'" aria-label="'+x+(x===1?' estrela':' estrelas')+'" aria-pressed="false">★</button>').join('')+'</div><small id="rating-value">Selecione uma nota</small></fieldset><div class="field"><label for="pro-description">Como foi sua experiência? *</label><textarea id="pro-description" required minlength="10" maxlength="600" placeholder="Conte como foi o atendimento e o resultado do serviço."></textarea><small>De 10 a 600 caracteres. Evite dados pessoais no relato.</small></div><label class="check-row"><input id="pro-recommend" type="checkbox" checked>Recomendo este profissional para meus vizinhos.</label><label class="check-row"><input id="pro-consent" type="checkbox" required>Tenho permissão para compartilhar os dados de contato informados.</label><p id="form-error" class="form-error hidden" role="alert"></p><div class="dialog-actions"><button class="button secondary" type="button" data-close>Cancelar</button><button class="button primary" type="submit">Publicar indicação</button></div></form>')}
+$('#recommend-button').addEventListener('click',showRecommendationForm);
+$('#recommendations-list').addEventListener('click',e=>{const button=e.target.closest('button');if(!button)return;if(button.id==='empty-recommend-button')showRecommendationForm();if(button.dataset.profile)openProfile(button.dataset.profile);if(button.dataset.save)toggleSave(button.dataset.save)});
+$('#search-input').addEventListener('input',e=>{searchText=e.target.value;const c=selected();if(c)renderRecommendations(c)});
+$('#category-filter').addEventListener('change',()=>{const c=selected();if(c)renderRecommendations(c)});
+$('#sort-pros').addEventListener('change',()=>{const c=selected();if(c)renderRecommendations(c)});
+$('#category-buttons').addEventListener('click',e=>{const button=e.target.closest('[data-category]');if(!button)return;$('#category-filter').value=button.dataset.category;refresh()});
+$('#professional-nav').addEventListener('click',e=>{const button=e.target.closest('[data-pro-view]');if(!button)return;showSaved=button.dataset.proView==='salvos';showMine=button.dataset.proView==='indicacoes';searchText='';$('#search-input').value='';$('#category-filter').value='';refresh()});
+function toggleSave(id){const group=groupById(id);if(!group)return;data.savedByPhone ||= {};const list=data.savedByPhone[data.currentPhone] ||= [];const key=savedKey(group),index=list.indexOf(key);if(index>=0)list.splice(index,1);else list.push(key);save();refresh();if($('#modal').open&&profileId===group.id&&$('#modal-title').textContent==='Perfil do profissional')openProfile(group.id);toast(index>=0?'Profissional removido dos salvos.':'Profissional salvo nesta comunidade.')}
+$('#close-modal').addEventListener('click',closeModal);
+$('#modal').addEventListener('click',e=>{
+  if(e.target===$('#modal')){closeModal();return}
+  const button=e.target.closest('button');if(!button)return;
+  if(button.hasAttribute('data-close')){closeModal();return}
+  if(button.hasAttribute('data-show-residents')){showResidents();return}
+  if(button.dataset.profile){openProfile(button.dataset.profile);return}
+  if(button.dataset.save){toggleSave(button.dataset.save);return}
+  if(button.dataset.contact){showContact(button.dataset.contact);return}
+  if(button.dataset.review){showReviewForm(button.dataset.review);return}
+  if(button.dataset.report){showReportForm(button.dataset.report);return}
+  if(button.dataset.deleteProfessional){confirmDeleteProfessional(button.dataset.deleteProfessional);return}
+  if(button.dataset.confirmDeleteProfessional){
+    const c=selected(),group=groupById(button.dataset.confirmDeleteProfessional);
+    if(!canDeleteProfessional(c)||!group){toast('Você não pode excluir este profissional.');return}
+    data.recommendations=data.recommendations.filter(row=>row.communityId!==c.id||normalize(row.name)!==normalize(group.name));
+    for(const keys of Object.values(data.savedByPhone||{})){const index=keys.indexOf(savedKey(group));if(index>=0)keys.splice(index,1)}
+    profileId=null;save();closeModal();refresh();toast('Profissional excluído da comunidade.');return;
+  }
+  if(button.dataset.toggleModerator){
+    const c=selected(),phone=button.dataset.toggleModerator;
+    if(!isCreator(c)||!c.members.includes(phone)||phone===c.creatorPhone)return;
+    c.moderators ||= [];
+    c.moderators=c.moderators.includes(phone)?c.moderators.filter(x=>x!==phone):[...c.moderators,phone];
+    save();showResidents();toast(c.moderators.includes(phone)?'Moderador adicionado.':'Moderação removida.');return;
+  }
+  if(button.dataset.expel){confirmExpel(button.dataset.expel);return}
+  if(button.dataset.confirmExpel){
+    const c=selected(),phone=button.dataset.confirmExpel;
+    if(!canExpel(c,phone)){toast('Você não pode expulsar este residente.');return}
+    c.members=c.members.filter(x=>x!==phone);c.moderators=moderators(c).filter(x=>x!==phone);
+    save();showResidents();toast('Residente removido da comunidade.');return;
+  }
+  if(button.dataset.rating){formRating=Number(button.dataset.rating);$('#modal').querySelectorAll('[data-rating]').forEach(x=>{x.classList.toggle('on',Number(x.dataset.rating)<=formRating);x.setAttribute('aria-pressed',String(Number(x.dataset.rating)===formRating))});$('#rating-value').textContent=formRating+' de 5 estrelas';return}
+  const invite=data.invitations.find(x=>x.id===(button.dataset.accept||button.dataset.decline)&&x.phone===data.currentPhone&&x.status==='pending');if(!invite)return;
+  const c=data.communities.find(x=>x.id===invite.communityId);
+  if(button.dataset.accept&&c){if(!c.members.includes(data.currentPhone))c.members.push(data.currentPhone);data.selectedByPhone[data.currentPhone]=c.id;invite.status='accepted';toast('Você entrou na comunidade.')}else{invite.status='declined';toast('Convite recusado.')}
+  save();showInvitations();refresh();
+});
+$('#modal').addEventListener('submit',e=>{
+  e.preventDefault();
+  const form=e.target;
+  if(form.id==='create-form'){
+    const name=$('#new-community-name').value.trim();if(!name)return;
+    const c={id:uid(),name,creatorPhone:data.currentPhone,members:[data.currentPhone]};
+    data.communities.push(c);data.selectedByPhone[data.currentPhone]=c.id;closeModal();toast('Comunidade criada.');
+  }
+  if(form.id==='invite-form'){
+    const phone=digits($('#invite-phone').value),c=selected();if(!phone||!c)return;
+    if(c.members.includes(phone)||data.invitations.some(x=>x.communityId===c.id&&x.phone===phone&&x.status==='pending')){toast('Esse residente já participa ou tem um convite pendente.');return}
+    data.invitations.push({id:uid(),communityId:c.id,phone,sender:user().name,status:'pending'});closeModal();toast('Convite criado.');
+  }
+  if(form.id==='recommendation-form'||form.id==='review-form'){
+    const c=selected();if(!c)return;
+    const error=$('#form-error');
+    if(!formRating){error.textContent='Selecione uma nota de 1 a 5 estrelas.';error.classList.remove('hidden');return}
+    const creating=form.id==='recommendation-form';
+    const group=creating?null:groupById(form.dataset.id);
+    if(!creating&&!group){error.textContent='Profissional não encontrado.';error.classList.remove('hidden');return}
+    if(creating&&!$('#pro-recommend').checked){error.textContent='Para indicar, marque que recomenda este profissional.';error.classList.remove('hidden');return}
+    const name=creating?$('#pro-name').value.trim():group.name;
+    if(creating&&groups(c.id).some(x=>normalize(x.name)===normalize(name))){error.textContent='Já existe um profissional com esse nome. Abra o perfil para registrar sua experiência.';error.classList.remove('hidden');return}
+    const service=(creating?$('#pro-service'):$('#review-service')).value.trim();
+    const description=(creating?$('#pro-description'):$('#review-description')).value.trim();
+    if(service.length<3||description.length<10){error.textContent='Informe o serviço e conte sua experiência com pelo menos 10 caracteres.';error.classList.remove('hidden');return}
+    data.recommendations.unshift({id:uid(),communityId:c.id,name,category:creating?$('#pro-category').value:group.category,service,rating:formRating,description,contact:creating?$('#pro-contact').value.trim():group.contact,author:user().name,authorPhone:data.currentPhone,recommend:creating||$('#review-recommend').checked,indication:creating});
+    if(creating){closeModal();profileId=null}else openProfile(group.id);
+    toast(creating?'Indicação publicada.':'Experiência registrada.');
+  }
+  if(form.id==='report-form'){closeModal();toast('Relato simulado registrado. Nenhuma denúncia foi enviada.')}
+  save();refresh();
+});
+void initServer();
+</script>
+</body></html>
+
+
