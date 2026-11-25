@@ -1,0 +1,12 @@
+{
+  "name": "entreagente-mockup",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test server.test.js client.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
