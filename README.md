@@ -9,10 +9,12 @@ Mockup de indicações para comunidades. O servidor usa apenas o Node.js, sem in
 3. Nos outros dispositivos da mesma rede, acesse http://IP-DO-COMPUTADOR:3000, substituindo pelo endereço de rede do computador que executa o servidor.
 4. Se a conexão for bloqueada, libere a porta 3000 no firewall da rede local.
 
-Os dados compartilhados ficam em entreagente-data.json, criado automaticamente na primeira alteração. O cadastro de profissionais é compartilhado entre comunidades. Ao indicar, o morador escolhe um profissional cadastrado e registra sua experiência. Imagens JPG, PNG ou WebP de até 2 MB ficam em entreagente-images/ no servidor. Ambos os caminhos são ignorados pelo Git.
+Os dados compartilhados ficam em entreagente-data.json. Contas e sessões ficam em entreagente-auth.json, com senhas protegidas por hash. O cadastro permite criar uma conta de morador ou expandir os campos para registrar-se como profissional; o login usa email e senha. Não é necessário confirmar o email neste protótipo. O nome no topo abre a edição ou exclusão da conta.
 
-Cada morador pode excluir suas próprias experiências pelo perfil do profissional. Convites aparecem nas notificações do destinatário quando ele entra com o número informado. A página consulta novidades a cada três segundos. Dados locais desta nova versão são importados uma vez ao abrir a página pelo servidor; os registros da versão anterior foram descartados.
+Os profissionais cadastrados aparecem para indicação em qualquer comunidade. Ao indicar, o morador escolhe um profissional e registra sua experiência. Imagens JPG, PNG ou WebP de até 2 MB ficam em entreagente-images/ no servidor. Esses arquivos são ignorados pelo Git.
 
-Abrir o arquivo HTML diretamente mantém o modo local e não compartilha dados. O servidor precisa continuar ligado para os outros dispositivos acessarem o aplicativo. Este protótipo identifica pessoas apenas pelo telefone informado, sem verificar a posse do número; não use dados reais nem exponha o servidor à internet.
+Cada morador pode excluir suas próprias experiências pelo perfil do profissional. Convites aparecem nas notificações da conta com o email informado. A página consulta novidades a cada três segundos. Os registros locais da versão anterior são descartados ao abrir a página atualizada.
+
+O cadastro e o login exigem que a página seja aberta pelo servidor; abrir o HTML diretamente não permite entrar. O servidor precisa continuar ligado para os outros dispositivos acessarem o aplicativo. A conexão HTTP local não criptografa senhas em trânsito e o email não é verificado: use apenas em uma rede de teste confiável, sem dados reais, e não exponha o servidor à internet. Para uso público, configure HTTPS, verificação de email e controles de acesso no servidor.
 
 Para verificar a sincronização: npm test.
