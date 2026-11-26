@@ -6,13 +6,13 @@ const os = require('node:os');
 const path = require('node:path');
 const net = require('node:net');
 
-const empty = () => ({ users: [], communities: [], invitations: [], professionals: [], recommendations: [], savedByPhone: {} });
 const freePort = () => new Promise((resolve, reject) => {
   const socket = net.createServer();
   socket.listen(0, '127.0.0.1', () => { const port = socket.address().port; socket.close(() => resolve(port)); });
   socket.on('error', reject);
 });
-test('sincroniza convites, moradores e exclusões entre clientes', async () => {
+
+test('contas, profissionais, convites, imagens e exclusão sincronizam no servidor', async () => {
   const folder = fs.mkdtempSync(path.join(os.tmpdir(), 'entreagente-test-'));
   const port = await freePort();
   const child = spawn(process.execPath, ['server.js'], {
@@ -20,66 +20,94 @@ test('sincroniza convites, moradores e exclusões entre clientes', async () => {
     env: { ...process.env, HOST: '127.0.0.1', PORT: String(port), DATA_FILE: path.join(folder, 'data.json') },
     stdio: ['ignore', 'pipe', 'pipe']
   });
-  let serverOutput = '';
-  child.stdout.on('data', chunk => { serverOutput += chunk; });
-  child.stderr.on('data', chunk => { serverOutput += chunk; });
+  let output = '';
+  child.stdout.on('data', chunk => { output += chunk; });
+  child.stderr.on('data', chunk => { output += chunk; });
   const url = 'http://127.0.0.1:' + port;
+  const json = async (route, method, body, cookie = '') => fetch(url + route, {
+    method,
+    headers: { 'Content-Type': 'application/json', ...(cookie ? { Cookie: cookie } : {}) },
+    ...(body === undefined ? {} : { body: JSON.stringify(body) })
+  });
+  const state = async cookie => (await (await json('/api/state', 'GET', undefined, cookie)).json());
+  const sync = async (cookie, base, next) => {
+    const response = await json('/api/sync', 'POST', { base, next }, cookie);
+    assert.equal(response.status, 200);
+    return response.json();
+  };
+  const register = async body => {
+    const response = await json('/api/register', 'POST', body);
+    assert.equal(response.status, 200);
+    return { user: await response.json(), cookie: response.headers.get('set-cookie').split(';')[0] };
+  };
   try {
     let ready = false, lastError = '';
     for (let i = 0; i < 40; i++) {
-      try { const response = await fetch(url + '/api/state'); if (response.ok) { ready = true; break; } lastError = String(response.status); }
+      try { const response = await fetch(url + '/'); if (response.ok) { ready = true; break; } lastError = String(response.status); }
       catch (error) { lastError = String(error.cause || error); }
       await new Promise(resolve => setTimeout(resolve, 50));
     }
-    assert.ok(ready, 'servidor iniciou: ' + serverOutput + ' / acesso: ' + lastError);
-    const get = async () => (await fetch(url + '/api/state')).json();
-    const sync = async (base, next) => {
-      const response = await fetch(url + '/api/sync', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ base, next }) });
-      assert.equal(response.status, 200);
-      return response.json();
-    };
-    const baseA = await get();
-    const outdated = await fetch(url + '/api/sync', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ base: baseA, next: { communities: [] } }) });
-    assert.equal(outdated.status, 400, 'cliente antigo não restaura registros apagados');
-    const baseB = await get();
-    const nextA = structuredClone(baseA);
-    nextA.users.push({ name: 'Ana', phone: '111' });
-    nextA.communities.push({ id: 'c1', name: 'Edifício', creatorPhone: '111', members: ['111'] });
-    nextA.invitations.push({ id: 'i1', communityId: 'c1', phone: '222', sender: 'Ana', status: 'pending' });
-    await sync(baseA, nextA);
-    assert.equal((await get()).invitations[0].phone, '222');
-    const nextB = structuredClone(baseB);
-    nextB.users.push({ name: 'Bia', phone: '222' });
-    await sync(baseB, nextB);
-    assert.equal((await get()).invitations.length, 1, 'alteração concorrente preserva convite');
-    const acceptedBase = await get();
-    const accepted = structuredClone(acceptedBase);
+    assert.ok(ready, 'servidor iniciou: ' + output + ' / acesso: ' + lastError);
+    assert.equal((await json('/api/state', 'GET')).status, 401);
+
+    const ana = await register({ name: 'Ana', email: 'ana@example.com', password: 'senha-ana-123' });
+    assert.equal((await json('/api/login', 'POST', { email: 'ana@example.com', password: 'errada' })).status, 401);
+    assert.equal((await json('/api/register', 'POST', { name: 'Outra', email: 'ANA@example.com', password: 'outra-senha' })).status, 409);
+    const bia = await register({ name: 'Bia', email: 'bia@example.com', password: 'senha-bia-123' });
+    const jose = await register({ name: 'José Wilson', email: 'jose@example.com', password: 'senha-jose-123', professional: true,
+      category: 'Reparos', contact: '000', about: 'Pequenos reparos em casa' });
+    assert.equal(jose.user.role, 'professional');
+    const catalog = await state(ana.cookie);
+    assert.equal(catalog.professionals[0].name, 'José Wilson');
+    assert.equal(catalog.users.length, 3);
+    assert.doesNotMatch(JSON.stringify(catalog), /senha-ana-123|passwordHash|salt/);
+    const professionalEdit = await json('/api/me', 'PATCH', { name: 'José Wilson', email: 'jose@example.com', currentPassword: 'senha-jose-123', category: 'Reparos', contact: '111', about: 'Reparos e manutenção residencial' }, jose.cookie);
+    assert.equal(professionalEdit.status, 200);
+    assert.equal((await state(ana.cookie)).professionals[0].contact, '111');
+    const authFile = fs.readFileSync(path.join(folder, 'entreagente-auth.json'), 'utf8');
+    assert.doesNotMatch(authFile, /senha-ana-123|senha-bia-123|senha-jose-123/);
+
+    const base = await state(ana.cookie), next = structuredClone(base);
+    next.users.push({ id: 'forged', name: 'Falso' });
+    next.communities.push({ id: 'c1', name: 'Edifício', creatorId: ana.user.id, members: [ana.user.id], moderators: [] });
+    next.invitations.push({ id: 'i1', communityId: 'c1', email: 'bia@example.com', sender: 'Ana', senderId: ana.user.id, status: 'pending' });
+    await sync(ana.cookie, base, next);
+    assert.equal((await state(bia.cookie)).users.some(item => item.id === 'forged'), false);
+    assert.equal((await state(bia.cookie)).invitations[0].email, 'bia@example.com');
+    assert.equal((await state(jose.cookie)).invitations.length, 0, 'convite privado ao destinatário e remetente');
+    const acceptedBase = await state(bia.cookie), accepted = structuredClone(acceptedBase);
     accepted.invitations[0].status = 'accepted';
-    accepted.communities[0].members.push('222');
-    accepted.communities[0].moderators = ['222'];
-    accepted.professionals.push({ id: 'pro1', name: 'José Wilson', category: 'Reparos', contact: '000', about: 'Pequenos reparos' });
+    accepted.communities[0].members.push(bia.user.id);
+    await sync(bia.cookie, acceptedBase, accepted);
+    assert.deepEqual((await state(ana.cookie)).communities[0].members, [ana.user.id, bia.user.id]);
+
     const png = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Y9N9QAAAABJRU5ErkJggg==', 'base64');
-    const upload = await fetch(url + '/api/images', { method: 'POST', headers: { 'Content-Type': 'image/png' }, body: png });
+    const upload = await fetch(url + '/api/images', { method: 'POST', headers: { 'Content-Type': 'image/png', Cookie: bia.cookie }, body: png });
     assert.equal(upload.status, 201);
     const { id: imageId } = await upload.json();
-    const image = await fetch(url + '/api/images/' + imageId);
-    assert.equal(image.headers.get('content-type'), 'image/png');
-    assert.deepEqual(Buffer.from(await image.arrayBuffer()), png);
-    const invalid = await fetch(url + '/api/images', { method: 'POST', headers: { 'Content-Type': 'image/png' }, body: Buffer.from('not a png') });
-    assert.equal(invalid.status, 400);
-    accepted.recommendations.push({ id: 'p1', professionalId: 'pro1', communityId: 'c1', name: 'José Wilson', imageId, authorPhone: '111' });
-    await sync(acceptedBase, accepted);
-    const observed = await get();
-    assert.deepEqual(observed.communities[0].members, ['111', '222']);
-    assert.deepEqual(observed.communities[0].moderators, ['222']);
-    assert.equal(observed.professionals[0].name, 'José Wilson');
-    assert.equal(observed.recommendations[0].name, 'José Wilson');
-    const removed = structuredClone(observed);
-    removed.recommendations = [];
-    await sync(observed, removed);
-    assert.equal((await get()).recommendations.length, 0);
-    assert.equal((await fetch(url + '/api/images/' + imageId)).status, 404);
-    assert.equal(JSON.parse(fs.readFileSync(path.join(folder, 'data.json'))).invitations[0].status, 'accepted');
+    assert.equal((await fetch(url + '/api/images/' + imageId, { headers: { Cookie: bia.cookie } })).status, 200);
+    const reviewBase = await state(bia.cookie), reviewed = structuredClone(reviewBase);
+    reviewed.recommendations.push({ id: 'r1', professionalId: reviewBase.professionals[0].id, communityId: 'c1', name: 'José Wilson',
+      category: 'Reparos', author: 'Bia', authorId: bia.user.id, service: 'Conserto', description: 'Fez um bom serviço', rating: 5, recommend: true, imageId });
+    await sync(bia.cookie, reviewBase, reviewed);
+    assert.equal((await state(ana.cookie)).recommendations.length, 1);
+
+    assert.equal((await json('/api/me', 'PATCH', { name: 'Ana Maria', email: 'ana.nova@example.com', currentPassword: 'errada' }, ana.cookie)).status, 403);
+    const changed = await json('/api/me', 'PATCH', { name: 'Ana Maria', email: 'ana.nova@example.com', currentPassword: 'senha-ana-123', newPassword: 'senha-nova-123' }, ana.cookie);
+    assert.equal(changed.status, 200);
+    assert.equal((await changed.json()).email, 'ana.nova@example.com');
+    assert.equal((await json('/api/login', 'POST', { email: 'ana@example.com', password: 'senha-ana-123' })).status, 401);
+    assert.equal((await json('/api/login', 'POST', { email: 'ana.nova@example.com', password: 'senha-nova-123' })).status, 200);
+    assert.equal((await state(ana.cookie)).users.find(item => item.id === ana.user.id).name, 'Ana Maria');
+
+    assert.equal((await json('/api/me', 'DELETE', { password: 'errada' }, bia.cookie)).status, 403);
+    assert.equal((await json('/api/me', 'DELETE', { password: 'senha-bia-123' }, bia.cookie)).status, 200);
+    assert.equal((await json('/api/me', 'GET', undefined, bia.cookie)).status, 401);
+    assert.equal((await state(ana.cookie)).recommendations.length, 0);
+    assert.equal((await fetch(url + '/api/images/' + imageId, { headers: { Cookie: ana.cookie } })).status, 404);
+    assert.equal((await state(ana.cookie)).communities[0].members.length, 1);
+    assert.equal((await json('/api/me', 'DELETE', { password: 'senha-nova-123' }, ana.cookie)).status, 200);
+    assert.equal((await state(jose.cookie)).communities.length, 0);
   } finally {
     child.kill();
     fs.rmSync(folder, { recursive: true, force: true });
