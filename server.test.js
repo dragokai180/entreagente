@@ -6,7 +6,7 @@ const os = require('node:os');
 const path = require('node:path');
 const net = require('node:net');
 
-const empty = () => ({ users: [], communities: [], invitations: [], recommendations: [], savedByPhone: {} });
+const empty = () => ({ users: [], communities: [], invitations: [], professionals: [], recommendations: [], savedByPhone: {} });
 const freePort = () => new Promise((resolve, reject) => {
   const socket = net.createServer();
   socket.listen(0, '127.0.0.1', () => { const port = socket.address().port; socket.close(() => resolve(port)); });
@@ -39,6 +39,8 @@ test('sincroniza convites, moradores e exclusões entre clientes', async () => {
       return response.json();
     };
     const baseA = await get();
+    const outdated = await fetch(url + '/api/sync', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ base: baseA, next: { communities: [] } }) });
+    assert.equal(outdated.status, 400, 'cliente antigo não restaura registros apagados');
     const baseB = await get();
     const nextA = structuredClone(baseA);
     nextA.users.push({ name: 'Ana', phone: '111' });
@@ -55,16 +57,28 @@ test('sincroniza convites, moradores e exclusões entre clientes', async () => {
     accepted.invitations[0].status = 'accepted';
     accepted.communities[0].members.push('222');
     accepted.communities[0].moderators = ['222'];
-    accepted.recommendations.push({ id: 'p1', communityId: 'c1', name: 'José Wilson' });
+    accepted.professionals.push({ id: 'pro1', name: 'José Wilson', category: 'Reparos', contact: '000', about: 'Pequenos reparos' });
+    const png = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Y9N9QAAAABJRU5ErkJggg==', 'base64');
+    const upload = await fetch(url + '/api/images', { method: 'POST', headers: { 'Content-Type': 'image/png' }, body: png });
+    assert.equal(upload.status, 201);
+    const { id: imageId } = await upload.json();
+    const image = await fetch(url + '/api/images/' + imageId);
+    assert.equal(image.headers.get('content-type'), 'image/png');
+    assert.deepEqual(Buffer.from(await image.arrayBuffer()), png);
+    const invalid = await fetch(url + '/api/images', { method: 'POST', headers: { 'Content-Type': 'image/png' }, body: Buffer.from('not a png') });
+    assert.equal(invalid.status, 400);
+    accepted.recommendations.push({ id: 'p1', professionalId: 'pro1', communityId: 'c1', name: 'José Wilson', imageId, authorPhone: '111' });
     await sync(acceptedBase, accepted);
     const observed = await get();
     assert.deepEqual(observed.communities[0].members, ['111', '222']);
     assert.deepEqual(observed.communities[0].moderators, ['222']);
+    assert.equal(observed.professionals[0].name, 'José Wilson');
     assert.equal(observed.recommendations[0].name, 'José Wilson');
     const removed = structuredClone(observed);
     removed.recommendations = [];
     await sync(observed, removed);
     assert.equal((await get()).recommendations.length, 0);
+    assert.equal((await fetch(url + '/api/images/' + imageId)).status, 404);
     assert.equal(JSON.parse(fs.readFileSync(path.join(folder, 'data.json'))).invitations[0].status, 'accepted');
   } finally {
     child.kill();
