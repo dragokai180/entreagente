@@ -1,10 +1,26 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { spawn } = require('node:child_process');
+const { spawn, spawnSync } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const net = require('node:net');
+
+test('o servidor por e-mail preserva um arquivo de contas por ID', t => {
+  const folder = fs.mkdtempSync(path.join(os.tmpdir(), 'entreagente-base-id-'));
+  t.after(() => fs.rmSync(folder, { recursive: true, force: true }));
+  const file = path.join(folder, 'dados.json');
+  const contents = JSON.stringify({ version: 2, users: [], communities: [] });
+  fs.writeFileSync(file, contents);
+  const result = spawnSync(process.execPath, ['server.js'], {
+    cwd: __dirname, env: { ...process.env, DATA_FILE: file, HOST: '127.0.0.1', PORT: '0' },
+    encoding: 'utf8', timeout: 5000
+  });
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /base usa login por ID/);
+  assert.equal(fs.readFileSync(file, 'utf8'), contents);
+  assert.deepEqual(fs.readdirSync(folder), ['dados.json']);
+});
 
 const freePort = () => new Promise((resolve, reject) => {
   const socket = net.createServer();

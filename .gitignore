@@ -3,3 +3,7 @@ entreagente-data.json.tmp
 entreagente-images/
 entreagente-auth.json
 entreagente-auth.json.tmp
+*.json.media/
+*.json.v1.bak
+.vs/
+node_modules/

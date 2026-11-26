@@ -4,7 +4,9 @@
   "version": "0.1.0",
   "scripts": {
     "start": "node server.js",
-    "test": "node --test server.test.js client.test.js"
+    "test": "node --test",
+    "start:email": "node versao-email/server.js",
+    "ativar": "node aplicativo/ativar.js"
   },
   "engines": {
     "node": ">=18"
