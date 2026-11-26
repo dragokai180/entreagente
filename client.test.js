@@ -47,3 +47,27 @@ test('criar comunidade não altera a referência da última versão do servidor'
   assert.equal(result.base.length, 0);
   assert.equal(result.changed, true);
 });
+
+test('perfil mostra exclusão apenas na experiência do próprio morador', () => {
+  const html = fs.readFileSync(path.join(__dirname, 'entreagente_mockup.html'), 'utf8');
+  const start = html.indexOf('function profileBody(group){');
+  const end = html.indexOf('function openProfile(id)', start);
+  assert.ok(start >= 0 && end > start);
+  const render = new Function('phone', 'group',
+    'const data={currentPhone:phone};const average=()=>5;const recommenders=()=>2;' +
+    'const safe=String;const isSaved=()=>false;const initials=()=>"JW";' +
+    'const selected=()=>({});const canDeleteProfessional=()=>false;' +
+    html.slice(start, end) + 'return profileBody(group);'
+  );
+  const group = { id: 'pro1', name: 'José Wilson', category: 'Reparos', about: '', rows: [
+    { id: 'r1', author: 'Ana', authorPhone: '111', service: 'Reparo', description: 'Tudo certo', rating: 5, recommend: true, imageId: '11111111-1111-1111-1111-111111111111.png' },
+    { id: 'r2', author: 'Bia', authorPhone: '222', service: 'Reparo', description: 'Bom trabalho', rating: 5, recommend: true }
+  ] };
+  const ana = render('111', group);
+  assert.match(ana, /data-delete-experience="r1"/);
+  assert.doesNotMatch(ana, /data-delete-experience="r2"/);
+  assert.match(ana, /src="\/api\/images\/11111111-1111-1111-1111-111111111111\.png"/);
+  const bia = render('222', group);
+  assert.match(bia, /data-delete-experience="r2"/);
+  assert.doesNotMatch(bia, /data-delete-experience="r1"/);
+});
