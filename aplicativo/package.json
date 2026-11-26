@@ -1,0 +1,13 @@
+{
+  "name": "entreagente-mockup",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test",
+    "ativar": "node ativar.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

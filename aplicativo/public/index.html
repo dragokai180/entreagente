@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#145640">
+  <title>EntreAgente · Sua comunidade</title>
+  <link rel="stylesheet" href="/app.css">
+  <script defer src="/uploads.js"></script>
+  <script defer src="/provider-ui.js"></script>
+  <script defer src="/app.js"></script>
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="brand-icon" aria-hidden="true">⌂</span><span>entre<strong>agente</strong></span></div>
+  <div id="top-actions" class="actions" hidden>
+    <button data-action="invites">Convites <span id="invite-count"></span></button>
+    <button data-action="account" id="account-button">Minha conta</button>
+  </div>
+</header>
+<main id="auth" class="auth" hidden>
+  <section class="auth-panel">
+    <h1>Acesse o EntreAgente</h1>
+    <div class="tabs" aria-label="Acesso">
+      <button type="button" data-mode="login">Entrar</button>
+      <button type="button" data-mode="register">Criar conta</button>
+    </div>
+    <form id="auth-form">
+      <label id="login-field">ID de acesso<input name="loginId" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="80" placeholder="Ex.: ana.lima.ab12cd"></label>
+      <label id="name-field" hidden>Seu nome<input name="name" autocomplete="name" minlength="2" maxlength="80"></label>
+      <label id="activation-field" hidden>Código de ativação<input name="code" autocomplete="off" spellcheck="false" maxlength="200"></label>
+      <label>Senha<input id="password" name="password" type="password" required autocomplete="current-password" maxlength="128"></label>
+      <p class="hint" id="password-hint" hidden>Use uma frase com pelo menos 15 caracteres.</p>
+      <p class="error" id="auth-error" role="alert" hidden></p>
+      <button class="primary" id="auth-submit">Entrar</button>
+    </form>
+    <button class="link" data-mode="activate">Ativar cadastro antigo</button>
+  </section>
+</main>
+<main id="profile-choice" class="auth" hidden>
+  <section class="auth-panel" aria-labelledby="profile-choice-title">
+    <h1 id="profile-choice-title" tabindex="-1">Escolha seu tipo de perfil</h1>
+    <label>Seu ID de acesso<input id="choice-login-id" readonly></label>
+    <p class="hint">Guarde este ID. Você vai usá-lo com sua senha para entrar novamente.</p>
+    <form id="profile-choice-form">
+      <fieldset class="profile-options">
+        <legend>Como você quer usar o EntreAgente?</legend>
+        <label class="profile-option">
+          <input type="radio" name="accountType" value="resident" required aria-labelledby="resident-title" aria-describedby="resident-help">
+          <span><strong id="resident-title">Morador</strong><small id="resident-help">Encontrar e indicar profissionais no meu condomínio.</small></span>
+        </label>
+        <label class="profile-option">
+          <input type="radio" name="accountType" value="provider" required aria-labelledby="provider-title" aria-describedby="provider-help">
+          <span><strong id="provider-title">Prestador de serviços</strong><small id="provider-help">Editar meu perfil profissional e publicar meus trabalhos.</small></span>
+        </label>
+      </fieldset>
+      <p class="error" id="profile-choice-error" role="alert" hidden></p>
+      <button class="primary" type="submit">Continuar</button>
+    </form>
+    <button type="button" class="link" data-action="logout">Sair da conta</button>
+  </section>
+</main>
+<main id="app" class="shell" hidden>
+  <aside>
+    <label for="community">Condomínio</label>
+    <select id="community"><option value="">Selecione</option></select>
+    <nav id="nav" aria-label="Navegação da comunidade">
+      <a data-view="feed">Feed</a><a data-view="catalogo">Encontrar profissionais</a>
+      <a data-view="minhas">Minhas indicações</a><a data-view="salvos">Profissionais salvos</a>
+    </nav>
+    <div class="side-actions">
+      <button class="link" data-action="create-community">Criar condomínio</button>
+      <button class="link" data-action="redeem">Usar código de convite</button>
+      <button class="link" data-action="residents" id="residents-button" hidden>Moradores</button>
+    </div>
+  </aside>
+  <section class="workspace">
+    <div class="page-head">
+      <div><p class="eyebrow" id="community-label"></p><h1 id="view-title">Comunidade</h1></div>
+      <div id="community-actions" class="actions" hidden>
+        <button data-action="community-compose" id="publish-media" hidden>Publicar no feed</button>
+        <button data-action="new-pro">Cadastrar profissional</button>
+        <button class="primary" data-action="indicate">Indicar profissional</button>
+      </div>
+    </div>
+    <div id="filters" class="filters" hidden>
+      <label>Buscar profissional<input id="search" type="search" placeholder="Nome, serviço ou palavra do relato"></label>
+      <label>Categoria<select id="category"></select></label>
+      <label>Ordenar por<select id="sort"><option value="recommended">Mais indicações</option><option value="rating">Melhor avaliação</option><option value="name">Nome de A a Z</option></select></label>
+    </div>
+    <div id="content"></div>
+  </section>
+</main>
+<main id="provider-area" hidden><h1>Meu perfil profissional</h1><div id="provider-content"></div></main>
+<p id="status" class="status" role="status">Carregando…</p>
+<dialog id="modal" aria-labelledby="modal-title">
+  <div class="dialog-head"><h2 id="modal-title">Detalhes</h2><button type="button" data-action="close" aria-label="Fechar">×</button></div>
+  <div id="modal-body"></div>
+  <p class="error" id="modal-error" role="alert" hidden></p>
+</dialog>
+</body></html>
